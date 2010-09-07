@@ -1,0 +1,58 @@
+html {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	background: #FFF url("../images/header_bg.png") repeat-x;
+}
+
+div {
+	padding: 0;
+}
+
+#header {
+	height: 74px;
+	width: 940px;
+	margin: 0px auto;	
+	color: #FFF;
+	display: block;
+	padding: 10px;
+}
+
+#container {
+	width: 940px;
+	min-height: 960px;
+	margin: 0px auto;
+	background: #FFF;
+	border: 1px solid black;
+	border-top: none;
+	padding: 10px;
+}
+
+#flash_notice {
+	background: #a2f295;
+	border: 1px solid #1fdb00;
+	padding: 0.5em;
+	width: 75%;
+}
+
+#errorExplanation {
+	border: 2px solid #B00;
+	clear: both;
+}
+
+#errorExplanation h2 {
+	padding: 0.25em;
+	margin-top: 0;
+	background: #B00;
+	color: #FFF;
+	font-size: 14pt;
+}
+
+#errorExplanation p {
+	padding: 1em;
+	padding-top: 0;
+}
