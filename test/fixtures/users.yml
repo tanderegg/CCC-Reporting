@@ -1,0 +1,17 @@
+one:
+  username: MyString
+  email: MyString
+  password: MyString
+  phonenumber: MyString
+  cel_user_id: 1
+  organization_id: 1
+  role_id: 1
+
+two:
+  username: MyString
+  email: MyString
+  password: MyString
+  phonenumber: MyString
+  cel_user_id: 1
+  organization_id: 1
+  role_id: 1

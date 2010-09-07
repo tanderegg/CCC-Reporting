@@ -1,0 +1,36 @@
+<% title "User" %>
+
+<p>
+  <strong>Username:</strong>
+  <%=h @user.username %>
+</p>
+<p>
+  <strong>Email:</strong>
+  <%=h @user.email %>
+</p>
+<p>
+  <strong>Password:</strong>
+  <%=h @user.password %>
+</p>
+<p>
+  <strong>Phonenumber:</strong>
+  <%=h @user.phonenumber %>
+</p>
+<p>
+  <strong>Cel User:</strong>
+  <%=h @user.cel_user_id %>
+</p>
+<p>
+  <strong>Organization:</strong>
+  <%=h @user.organization_id %>
+</p>
+<p>
+  <strong>Role:</strong>
+  <%=h @user.role_id %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_user_path(@user) %> |
+  <%= link_to "Destroy", @user, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", users_path %>
+</p>

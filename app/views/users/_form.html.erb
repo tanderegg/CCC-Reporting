@@ -1,0 +1,32 @@
+<% form_for @user do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :username %><br />
+    <%= f.text_field :username %>
+  </p>
+  <p>
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.label :password %><br />
+    <%= f.text_field :password %>
+  </p>
+  <p>
+    <%= f.label :phonenumber %><br />
+    <%= f.text_field :phonenumber %>
+  </p>
+  <p>
+    <%= f.label :cel_user_id %><br />
+    <%= f.text_field :cel_user_id %>
+  </p>
+  <p>
+    <%= f.label :organization_id %><br />
+    <%= f.text_field :organization_id %>
+  </p>
+  <p>
+    <%= f.label :role_id %><br />
+    <%= f.text_field :role_id %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>
