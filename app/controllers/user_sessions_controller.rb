@@ -1,5 +1,12 @@
 class UserSessionsController < ApplicationController
+
+  skip_filter :access_control
+
   def new
+  	if current_user
+  		redirect_to :controller => :users, :action => :index
+  		return
+  	end
     @user_session = UserSession.new
   end
   

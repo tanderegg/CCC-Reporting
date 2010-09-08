@@ -1,3 +1,4 @@
+require "lib/exceptions.rb"
 # Filters added to this controller apply to all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
 
@@ -15,6 +16,10 @@ class ApplicationController < ActionController::Base
   
   helper_method :current_user
   
+  rescue_from Exceptions::SecurityTransgression, :with => lambda {head (:forbidden)}
+  
+  before_filter :access_control
+  
   private
   
   def current_user_session
@@ -26,4 +31,11 @@ class ApplicationController < ActionController::Base
   	return @current_user if defined?(@current_user)
   	@current_user = current_user_session && current_user_session.record
   end
+  
+  def access_control(permissions=[])
+  	unless (current_user || (permissions.include?("ALL")))
+  		raise Exceptions::SecurityTransgression
+  	end
+  end
+  
 end

@@ -1,4 +1,5 @@
 <% title "USER - #{@user.username}" %>
+<%= set_menu_item "account_link" %>
 
 <p>
   <strong>Username:</strong>
@@ -22,7 +23,7 @@
 </p>
 <p>
   <strong>Organization:</strong>
-  <%=h @user.organization_id %>
+  <%=h @user.organization.name if @user.organization %>
 </p>
 <p>
   <strong>Role:</strong>

@@ -9,4 +9,9 @@ module ApplicationHelper
 	  @show_title
 	end
 
+	def set_menu_item(option)
+		r   = "<script type=\"text/javascript\">"
+		r += "$('#{option}').addClassName('selected');"
+		r += "</script>"
+	end
 end

@@ -14,6 +14,18 @@ div {
 	padding: 0;
 }
 
+table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+table tr th {
+	background: #3264A2;
+	color: #FFF;
+	border: 1px solid #6E9FDA;
+	padding: 0.25em;
+}
+
 #wrapper {
 	width: 960px;
 	margin: 0px auto;
@@ -30,10 +42,10 @@ div {
 
 #page_title {
 	font-family: Times New Roman;
-	font-size: 12pt;
+	font-size: 10pt;
 	position: absolute;
 	left: 172px;
-	top: -10px;
+	top: 0px;
 }
 
 #container {

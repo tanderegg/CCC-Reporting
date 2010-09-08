@@ -1,0 +1,26 @@
+<% title "Organizations" %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Address</th>
+    <th>City</th>
+    <th>State</th>
+    <th>Zip</th>
+    <th>Abbreviation</th>
+    <th>Actions</th>
+  </tr>
+  <% for organization in @organizations %>
+    <tr>
+      <td><%= link_to h(organization.name), organization %></td>
+      <td><%=h organization.address %></td>
+      <td><%=h organization.city %></td>
+      <td><%=h organization.state %></td>
+      <td><%=h organization.zip %></td>
+      <td><%=h organization.abbreviation %></td>
+      <td><%= link_to "Edit", edit_organization_path(organization) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Organization", new_organization_path %></p>

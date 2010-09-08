@@ -1,0 +1,43 @@
+<% title "Organization" %>
+
+<p>
+  <strong>Name:</strong>
+  <%=h @organization.name %>
+</p>
+<p>
+  <strong>Parent Organization:</strong>
+  <%=h (@organization.parent_organization ? @organization.parent_organization.name : "None") %>
+</p>
+<p>
+  <strong>Address:</strong>
+  <%=h @organization.address %>
+</p>
+<p>
+  <strong>City:</strong>
+  <%=h @organization.city %>
+</p>
+<p>
+  <strong>State:</strong>
+  <%=h @organization.state %>
+</p>
+<p>
+  <strong>Zip:</strong>
+  <%=h @organization.zip %>
+</p>
+<p>
+  <strong>Abbreviation:</strong>
+  <%=h @organization.abbreviation %>
+</p>
+<p>
+  <strong>Phone:</strong>
+  <%=h @organization.phone %>
+</p>
+<p>
+  <strong>Email:</strong>
+  <%=h @organization.email %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_organization_path(@organization) %> |
+  <%= link_to "View All", organizations_path %>
+</p>

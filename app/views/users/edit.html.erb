@@ -1,4 +1,5 @@
-<% title "Edit User" %>
+<% title "EDIT USER - #{@user.username}" %>
+<%= set_menu_item((current_user==@user ? "account_link" : "staffing_link")) %>
 
 <%= render :partial => 'form' %>
 
