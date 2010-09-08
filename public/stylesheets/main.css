@@ -1,35 +1,126 @@
 html {
 	margin: 0;
 	padding: 0;
+	background: url("../images/blue_background_tile.png") repeat;
 }
 
 body {
 	margin: 0;
 	padding: 0;
-	background: #FFF url("../images/header_bg.png") repeat-x;
+	background: url("../images/header_bg.png") repeat-x;
 }
 
 div {
 	padding: 0;
 }
 
+#wrapper {
+	width: 960px;
+	margin: 0px auto;
+	position: relative;
+}
+
 #header {
-	height: 74px;
-	width: 940px;
-	margin: 0px auto;	
+	height: 60px;	
+	width: 100%;
 	color: #FFF;
-	display: block;
-	padding: 10px;
+	padding: 0px 0px;
+	position: relative;
+}
+
+#page_title {
+	font-family: Times New Roman;
+	font-size: 12pt;
+	position: absolute;
+	left: 172px;
+	top: -10px;
 }
 
 #container {
-	width: 940px;
-	min-height: 960px;
-	margin: 0px auto;
-	background: #FFF;
-	border: 1px solid black;
-	border-top: none;
+	position: absolute;
+	top: 55px;
+	left: 0px;
+}
+
+#content {
+	position: absolute;
+	min-height: 560px;
+	margin-left: 170px;
+	width: 770px;
 	padding: 10px;
+	margin-top: 10px;
+	border: 1px solid black;
+	background: #FFF;
+	box-shadow: 4px 4px 4px #333;
+	-moz-box-shadow: 4px 4px 4px #333;
+	-webkit-box-shadow: 4px 4px 4px #333;
+}
+
+#logo_header {
+	position: absolute;
+	top: 7px;
+	left: 0px;
+}
+
+#info_box_header {
+	float: right;
+	margin-top: 15px;
+	background: url("../images/info_box.png") no-repeat;
+	width: 154px;
+	height: 23px;
+	padding: 3px 10px;
+}
+
+#info_box_header a {
+	color: #FFF;
+	text-decoration: none;
+}
+
+
+#sidebar_wrapper {
+	float: left;
+	width: 167px;	
+	padding: 0;
+}
+
+#sidebar {
+	width: 155px;
+	min-height: 300px;
+	background: url("../images/sidebar_background.png") repeat-y;	
+	padding: 1em 6px;
+}
+
+#sidebar ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+#sidebar ul li {
+	margin-bottom: 0.5em;
+	width: 134px;
+	height: 26px;
+	padding: 0px 7px;
+}
+
+#sidebar ul li:hover, #sidebar ul li.selected {
+	background: url("../images/sidebar_item_selected.png") no-repeat;
+}
+
+#sidebar ul li:hover a, #sidebar ul li.selected a {
+	color: #F88C63;
+}
+
+#sidebar ul li a {
+	color: #5D9BE8;
+	font-family: Georgia;
+	font-size: 10pt;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+#sidebar_footer {
+	width: 167px;
 }
 
 #flash_notice {
@@ -41,7 +132,6 @@ div {
 
 #errorExplanation {
 	border: 2px solid #B00;
-	clear: both;
 }
 
 #errorExplanation h2 {
