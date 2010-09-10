@@ -1,5 +1,5 @@
 <% title "USER - #{@user.username}" %>
-<%= set_menu_item "account_link" %>
+<%= set_menu_item (current_user.id==@user.id ? "account_link" : "staffing_link") %>
 
 <p>
   <strong>Username:</strong>
@@ -8,10 +8,6 @@
 <p>
   <strong>Email:</strong>
   <%=h @user.email %>
-</p>
-<p>
-  <strong>Password:</strong>
-  <%=h @user.password %>
 </p>
 <p>
   <strong>Phonenumber:</strong>
@@ -27,11 +23,12 @@
 </p>
 <p>
   <strong>Role:</strong>
-  <%=h @user.role_id %>
+  <%=h @user.role %>
 </p>
 
 <p>
-  <%= link_to "Edit", edit_user_path(@user) %> |
-  <%= link_to "Destroy", @user, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", users_path %>
+  <% if current_user.can_edit?(@user) %>
+  	<%= link_to "Edit", edit_user_path(@user), :class => "command" %>
+  <% end %>
+  <%= link_to "View Staff", users_path, :class => "command" %>
 </p>

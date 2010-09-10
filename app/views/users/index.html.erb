@@ -18,11 +18,17 @@
       <td><%=h user.email %></td>
       <td><%=h user.phonenumber %></td>
       <td><%=h user.organization.abbreviation if user.organization %></td>
-      <td><%=h user.role_id %></td>
-      <td><%= link_to "Edit", edit_user_path(user) %></td>
-      <td><%= link_to "Delete", user, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%=h user.role %></td> 
+      <% if current_user.can_edit?(user) %>
+      	<td><%= link_to "Edit", edit_user_path(user) %></td>
+      <% end %>
+      <% if current_user.can_destroy?(user) %>
+      	<td><%= link_to "Delete", user, :confirm => 'Are you sure?', :method => :delete %></td>
+      <% end %>
     </tr>
   <% end %>
 </table>
 
-<p><%= link_to "New User", new_user_path %></p>
+<% unless current_user.role=="Volunteer" then %>
+<p><%= link_to "New User", new_user_path, :class => "command" %></p>
+<% end %>

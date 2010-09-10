@@ -1,8 +1,9 @@
 <% title "Edit Organization" %>
+<%= set_menu_item("organizations_link") %>
 
 <%= render :partial => 'form' %>
 
 <p>
-  <%= link_to "Show", @organization %> |
-  <%= link_to "View All", organizations_path %>
+  <%= link_to "Cancel", @organization, :class => "command" %>
+  <%= link_to "View All", organizations_path, :class => "command" %>
 </p>

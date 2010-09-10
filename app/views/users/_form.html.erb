@@ -1,8 +1,12 @@
 <% form_for @user do |f| %>
   <%= f.error_messages %>
   <p>
-    <%= f.label :username %><br />
-    <%= f.text_field :username %>
+  	<%= f.label :username %><br />
+  	<% if @user.new_record? %>
+		<%= f.text_field :username %>
+	<% else %>
+		<strong><%= @user.username %></strong>
+	<% end %>
   </p>
   <p>
     <%= f.label :email %><br />
@@ -13,24 +17,26 @@
     <%= f.password_field :password %>
   </p>
   <p>
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :password_confirmation, "Confirm Password" %><br />
     <%= f.password_field :password_confirmation %>
   </p>
   <p>
-    <%= f.label :phonenumber %><br />
+    <%= f.label :phonenumber, "Phone Number" %><br />
     <%= f.text_field :phonenumber %>
   </p>
-  <p>
+  <!--<p>
     <%= f.label :cel_user_id %><br />
     <%= f.text_field :cel_user_id %>
-  </p>
-  <p>
-    <%= f.label :organization_id %><br />
-    <%= f.text_field :organization_id %>
-  </p>
-  <p>
-    <%= f.label :role_id %><br />
-    <%= f.text_field :role_id %>
-  </p>
+  </p>-->
+  <% if (current_user.id != @user.id) then %>
+	  <p>
+	    <%= f.label :organization_id %><br />
+	    <%= f.select :organization_id, current_user.viewable_organizations.collect{|o| [o.name, o.id]} %>
+	  </p>
+	  <p>
+	    <%= f.label :role_id %><br />
+	    <%= f.select :role_id, User.roles_assignable_by(current_user) %>
+	  </p>
+  <% end %>
   <p><%= f.submit %></p>
 <% end %>

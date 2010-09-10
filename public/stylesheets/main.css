@@ -49,13 +49,21 @@ table tr th {
 }
 
 #container {
-	position: absolute;
-	top: 55px;
-	left: 0px;
+	position: relative;
+	top: -16px;
+	//left: 0px;
+	//background: #3264A2;
+	padding-right: 10px;
+}
+
+#footer {
+	clear: both;
+	width: 100%;
 }
 
 #content {
-	position: absolute;
+	position: relative;
+	top: 10px;
 	min-height: 560px;
 	margin-left: 170px;
 	width: 770px;
@@ -66,6 +74,25 @@ table tr th {
 	box-shadow: 4px 4px 4px #333;
 	-moz-box-shadow: 4px 4px 4px #333;
 	-webkit-box-shadow: 4px 4px 4px #333;
+}
+
+#content a.command {
+	display: block;
+	width: 90px;
+	height: 21px;
+	padding: 1px 5px;
+	text-align: center;
+	background: url("../images/button.png");
+	color: #F88C63;
+	text-decoration: none;
+	float: left;
+	font-weight: bold;
+	margin-right: 1em;
+}
+
+#content a.command:hover {
+	background: url("../images/button_hover.png");
+	color: #FFF;
 }
 
 #logo_header {
@@ -115,12 +142,20 @@ table tr th {
 	padding: 0px 7px;
 }
 
-#sidebar ul li:hover, #sidebar ul li.selected {
+#sidebar ul li.selected {
 	background: url("../images/sidebar_item_selected.png") no-repeat;
 }
 
-#sidebar ul li:hover a, #sidebar ul li.selected a {
+#sidebar ul li:hover {
+	background: url("../images/sidebar_item_hover.png") no-repeat;
+}
+
+#sidebar ul li.selected a {
 	color: #F88C63;
+}
+
+#sidebar ul li:hover a {
+	color: #FFF;
 }
 
 #sidebar ul li a {
@@ -139,7 +174,14 @@ table tr th {
 	background: #a2f295;
 	border: 1px solid #1fdb00;
 	padding: 0.5em;
-	width: 75%;
+	margin: 0.25em 0em;
+}
+
+#flash_error {
+	background: #f2a295;
+	border: 1px solid #db1F00;
+	padding: 0.5em;
+	margin: 0.25em 0em;
 }
 
 #errorExplanation {

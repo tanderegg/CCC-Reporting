@@ -1,4 +1,5 @@
 <% title "Organization" %>
+<%= set_menu_item("organizations_link") %>
 
 <p>
   <strong>Name:</strong>
@@ -38,6 +39,8 @@
 </p>
 
 <p>
-  <%= link_to "Edit", edit_organization_path(@organization) %> |
-  <%= link_to "View All", organizations_path %>
+  <% if current_user.can_edit?(@organization) %>
+  	<%= link_to "Edit", edit_organization_path(@organization), :class => "command" %>
+  <% end %>
+  <%= link_to "View All", organizations_path, :class => "command" %>
 </p>

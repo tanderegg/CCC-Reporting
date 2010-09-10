@@ -14,11 +14,17 @@ class ApplicationController < ActionController::Base
   # from your application log (in this case, all fields with names like "password"). 
   # filter_parameter_logging :password
   
+  before_filter :access_control
+    
   helper_method :current_user
   
-  rescue_from Exceptions::SecurityTransgression, :with => lambda {head (:forbidden)}
+  rescue_from Exceptions::SecurityTransgression, :with => :deny_access
   
-  before_filter :access_control
+  def deny_access
+  	#flash[:error] = "Error: Permission Denied"
+  	#redirect_to :controller => :users, :action => :show, :id => current_user.id
+  	render :file => "#{RAILS_ROOT}/public/404.html", :status => 404
+  end
   
   private
   

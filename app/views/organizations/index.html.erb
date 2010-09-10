@@ -1,4 +1,5 @@
-<% title "Organizations" %>
+<% title "Listing Organizations" %>
+<%= set_menu_item("organizations_link") %>
 
 <table>
   <tr>
@@ -18,9 +19,13 @@
       <td><%=h organization.state %></td>
       <td><%=h organization.zip %></td>
       <td><%=h organization.abbreviation %></td>
-      <td><%= link_to "Edit", edit_organization_path(organization) %></td>
+      <% if current_user.can_edit?(organization) %>
+      	<td><%= link_to "Edit", edit_organization_path(organization) %></td>
+      <% end %>
     </tr>
   <% end %>
 </table>
 
-<p><%= link_to "New Organization", new_organization_path %></p>
+<% if current_user.role_id==0 || current_user.role_id==1 %>
+	<p><%= link_to "New Org.", new_organization_path, :class => "command" %></p>
+<% end %>

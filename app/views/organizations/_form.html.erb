@@ -34,7 +34,7 @@
   </p>
   <p>
   	<%= f.label :parent_id %><br />
-  	<%= f.select :parent_id, Organization.find(:all).collect{|o| [o.name, o.id]}+[["None", nil]] %>
+  	<%= f.select :parent_id, current_user.viewable_organizations.collect{|o| o.id==@organization.id ? nil : [o.name, o.id]}+[["None", nil]] %>
   </p>
   <p><%= f.submit %></p>
 <% end %>
