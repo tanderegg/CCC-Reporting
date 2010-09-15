@@ -1,0 +1,41 @@
+<% form_for [@organization, @report] do |f| %>
+  <%= f.error_messages %>
+  <div style="width: 100%; overflow: auto;">
+	  <p style="float: left; margin-right: 1em;">
+	    <%= f.label :name %><br />
+	    <%= f.text_field :name %>
+	  </p>
+	  <p style="float: left; margin-right: 1em;">
+	    <%= f.label :start_date, "Start Date" %><br />
+	    <%= f.date_select :start_date %>
+	  </p>
+	  <p style="float: left;">
+	    <%= f.label :end_date, "End Date" %><br />
+	    <%= f.date_select :end_date %>
+	  </p>
+  </div>
+  <div style="width: 100%; overflow: auto;">
+	  <p style="float: left; margin-right: 1em;">
+	    <%= f.label :description %><br />
+	    <%= f.text_area :description, :rows => 5, :style => "display: block;" %>
+	  </p>
+	  <p style="float: left;">
+	    <%= f.label :active %><br />
+	    <%= f.check_box :active, :checked => 'checked' %>
+	  </p>
+  </div>
+  <p>
+    <%= f.hidden_field :created_by, :value => current_user.id %>
+    <%= f.hidden_field :organization_id, :value => params[:organization_id] %>
+  </p>
+
+  <h3>Report Preview</h3>  
+  <p style="width: 100%; overflow: auto;">
+  	<%= link_to "New Group", new_report_report_field_group_path(@report), :class => "command" %>
+  </p>
+  <div id="report_preview">
+  	<%= @report.render_report %>
+  </div>
+  
+  <p><%= f.submit 'Save Report' %></p>
+<% end %>

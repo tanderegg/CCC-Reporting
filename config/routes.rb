@@ -1,13 +1,19 @@
 ActionController::Routing::Routes.draw do |map|
+
   map.resources :organizations do |organization|
   	organization.resources :users
+  	organization.resources :reports
   end
+  
+  map.resources :reports do |report|
+  	report.resources :report_field_groups
+  end
+  
+  map.resources :user_sessions
+  map.resources :users
 
   map.login "login", :controller => "user_sessions", :action => "new"
   map.logout "logout", :controller => "user_sessions", :action => "destroy"
-
-  map.resources :user_sessions
-  map.resources :users
   
   map.root :controller => "user_sessions", :action => "new"
   

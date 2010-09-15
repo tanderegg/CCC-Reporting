@@ -44,6 +44,7 @@ class User < ActiveRecord::Base
   	end
   end
   
+  # Permission verbage for readability, ala Hobo
   def can_view?(resource)
   	resource.viewable_by?(self)
   end
@@ -61,16 +62,20 @@ class User < ActiveRecord::Base
   end
   
   def viewable_by?(user)
+  	# Users can view any other user within their tree, and also their parent, regardless of role level.
   	valid_organization_ids = user.viewable_organizations.collect{|o| o.id}+[user.organization.parent_id]
   	valid_organization_ids.include?(organization_id)
   end
   
   def editable_by?(user)
+  	# Users can edit anyone in their organization tree who has a lower role level, or is themself.
   	valid_organization_ids = user.viewable_organizations.collect{|o| o.id}
   	valid_organization_ids.include?(organization_id) && (user.role_id < role_id || id == user.id)
   end
   
   def creatable_by?(user)
+  	# Allow a user to create a new user within that user's organization, and at a lower role level.  Volunteers cannot
+  	# create any users.  Ignore permission validations when the entity is a new record, as options haven't been set at that point.
   	valid_organization_ids = user.viewable_organizations.collect{|o| o.id}
   	((valid_organization_ids.include?(organization_id) && (user.role_id < role_id)) || self.new_record?) && user.role_id < 3
   end

@@ -25,6 +25,7 @@
 							<% if current_user %>
 								<li id="submit_report_link"><%= link_to "SUBMIT REPORT", "" %></li>
 								<li id="report_history_link"><%= link_to "REPORT HISTORY", "" %></li>
+								<li id="reports_link"><%= link_to "VIEW REPORTS", organization_reports_path(current_user.organization) %></li>
 								<li id="staffing_link"><%= link_to "STAFFING", users_url %></li>
 								<li id="organizations_link"><%= link_to "ORGANIZATIONS", organizations_path %></li>
 								<li id="account_link"><%= link_to "MY ACCOUNT", user_url(current_user) %></li>

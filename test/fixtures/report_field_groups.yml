@@ -1,0 +1,23 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  title: MyString
+  pos_x: MyString
+  pos_y: MyString
+  width: MyString
+  height: MyString
+  float: MyString
+  order: 1
+  created_by: 1
+  updated_by: 1
+
+two:
+  title: MyString
+  pos_x: MyString
+  pos_y: MyString
+  width: MyString
+  height: MyString
+  float: MyString
+  order: 1
+  created_by: 1
+  updated_by: 1

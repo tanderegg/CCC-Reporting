@@ -1,0 +1,36 @@
+<% title "REPORTS - #{@organization.abbreviation}" %>
+<%= set_menu_item("reports_link") %>
+
+<% form_tag(reports_path, :method => :get) do %>
+<p>
+	Find reports for <%= select_tag(:organization_id, "<option>Choose an organization...</option>"+options_from_collection_for_select(current_user.viewable_organizations-[@organization], "id", "name")) %>
+	<%= submit_tag "Refresh" %>
+</p>
+<% end %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Active</th>
+    <th>Created By</th>
+    <th>Start Date</th>
+    <th>End Date</th>
+    <th>Organization</th>
+    <th>Description</th>
+    <th>Actions</th>
+  </tr>
+  <% for report in @reports %>
+    <tr>
+      <td><%=link_to h(report.name) , organization_report_path(@organization, report) %></td>
+      <td><%=h report.active %></td>
+      <td><%=h report.creator.username %></td>
+      <td><%=h report.start_date %></td>
+      <td><%=h report.end_date %></td>
+      <td><%=h report.organization.abbreviation %></td>
+      <td><%=h report.description %></td>
+      <td><%= link_to "Edit", edit_organization_report_path(@organization, report) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Report", new_organization_report_path(@organization), :class => "command" %></p>

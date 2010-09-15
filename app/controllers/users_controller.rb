@@ -1,9 +1,7 @@
 class UsersController < ApplicationController
 
-  def index
-  	
+  def index  	
   	@users = current_user.viewable_users
- 
   end
   
   def show
@@ -19,6 +17,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     raise Exceptions::SecurityTransgression unless current_user.can_create?(@user)
+    
     if @user.save
       flash[:notice] = "Successfully created user: <strong>#{@user.username}</strong>"
       redirect_to root_url	
@@ -35,6 +34,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     raise Exceptions::SecurityTransgression unless current_user.can_edit?(@user)
+    
     if @user.update_attributes(params[:user])
       flash[:notice] = "Successfully updated profile: <strong>#{@user.username}</strong>"
       redirect_to root_url
@@ -45,6 +45,8 @@ class UsersController < ApplicationController
   
   def destroy
     @user = User.find(params[:id])
+    raise Exceptions::SecurityTransgression unless current_user.can_destroy?(@user)
+    
     message = "Successfully deleted account: <strong>#{@user.username}</strong>"
     @user.destroy
     flash[:notice] = message

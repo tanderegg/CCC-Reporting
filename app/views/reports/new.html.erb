@@ -1,0 +1,6 @@
+<% title "New Report" %>
+<%= set_menu_item("reports_link") %>
+
+<%= render :partial => 'form' %>
+
+<p><%= link_to "Cancel", organization_path(@organization), :class => "command" %></p>

@@ -1,0 +1,33 @@
+<% title "REPORT - #{@report.name}" %>
+<%= set_menu_item("reports_link") %>
+
+<h1><%=h @report.name %><small> - <%=h @report.start_date.to_s(:short) %> to <%=h @report.end_date.to_s(:short) %></small></h1>
+
+<p style="margin-bottom: 0;">
+  <strong>Description:</strong>
+  <%=h @report.description %>
+</p>
+<div style="margin-top: 0.25em; width: 100%; overflow: auto;">
+<p style="float: left; margin-right: 1em; margin-top: 0;">
+  <strong>Active:</strong>
+  <%=h @report.active %>
+</p>
+<p style="float: left; margin-right: 1em; margin-top: 0;">
+  <strong>Created By:</strong>
+  <%=h @report.creator.username %>
+</p>
+<p style="float: left; margin-top: 0;">
+  <strong>Organization:</strong>
+  <%=h @report.organization.name %>
+</p>
+</div>
+
+<h3>Report Preview</h3>  
+<div id="report_preview">
+	<%= @report.render_report %>
+</div>
+
+<p>
+  <%= link_to "Edit", edit_organization_report_path(@organization, @report), :class => "command" %>
+  <%= link_to "List Reports", organization_path(@organization), :class => "command" %>
+</p>
