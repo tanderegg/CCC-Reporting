@@ -1,0 +1,35 @@
+<% title "Review Report - #{@current_date}" %>
+<%= set_menu_item("submit_report_link") %>
+
+<% form_tag new_report_submission_path, :method => :get do %>
+	<%= (select_tag 'selected_report', options_from_collection_for_select(@organizations_reports, "id", "name")) unless @organizations_reports.blank? %>
+	 - <%= select_date(@current_date, {:order => [:month, :day, :year]})  %>
+	<%= submit_tag "Refresh" %>
+<% end %>
+
+<hr />	
+<% if @report %>
+	<h2><%= @report.name %> - <%= @current_date.to_s(:long) %></h2>
+	<% @report.report_field_groups.find(:all, :order => :render_order).each do |report_field_group| %>
+		<fieldset style="<%= report_field_group.generate_style %>"<legend><%= report_field_group.title %></legend>
+			<div style="width: 100%; overflow: auto;">
+				<% report_field_group.report_fields.find(:all, :order => 'render_order ASC').each do |report_field| %>
+					<% field_name = "report_submission[#{report_field.label}_#{report_field.id.to_s}]" %>
+						
+						<div style="<%= report_field.generate_style %>; margin-bottom: 1em;">
+							<% field_value = @report_submission.report_submission_datas.find(:first, :conditions => {:report_field_id => report_field.id}) %>
+							<% if report_field.report_field_type == "Text Field" %>
+								<%= label_tag "#{report_field.label}", nil, :style => "width: 6em; display: block; float: left;" %> 
+								<%= field_value.blank? ? "&nbsp;" : field_value.value  %>
+							<% elsif report_field.report_field_type == "Text Area" %>
+								<%= label_tag "#{report_field.label}", nil, :style => "width: 6em; display: block; float: left;" %> 
+								<%= field_value.blank? ? "None" : field_value.text_value %>
+							<% end %>
+						</div>
+				<% end %>
+			</div>
+		</fieldset>
+	<% end %>
+<% else %>
+	<p>No report selected</p>
+<% end %>

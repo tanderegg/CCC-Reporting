@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   acts_as_authentic
   
   belongs_to :organization
+  has_many :report_submissions
   
   ROLES = [ ["Admin", 0],["Manager", 1],["Staff", 2],["Volunteer", 3]]
   

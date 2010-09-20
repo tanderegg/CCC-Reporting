@@ -1,0 +1,22 @@
+<% title "Submit Report - #{@current_date}" %>
+<%= set_menu_item("submit_report_link") %>
+
+<% form_tag new_report_submission_path, :method => :get do %>
+	<%= (select_tag 'selected_report', options_from_collection_for_select(@organizations_reports, "id", "name")) unless @organizations_reports.blank? %>
+	 - <%= select_date(@current_date, {:order => [:month, :day, :year]})  %>
+	<%= submit_tag "Refresh" %>
+<% end %>
+
+<hr />	
+<% if @report %>
+	<h2><%= @report.name %> - <%= @current_date.to_s(:long) %></h2>
+	<% form_tag('/report_submissions') do %>
+		<%= render :partial => "reports/report", :object => @report, :locals => {:edit => false} %>
+		<br />
+		<%= hidden_field_tag :report_id, @report.id %>
+		<%= hidden_field_tag :date, @current_date %>
+		<%= submit_tag "Submit", :class => "command" %>
+	<% end %>
+<% else %>
+	<p>No report selected</p>
+<% end %>

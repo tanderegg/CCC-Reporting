@@ -3,20 +3,9 @@ class Report < ActiveRecord::Base
   
   belongs_to :organization
   has_many :report_field_groups
+  has_many :report_submissions
   
   def creator
   	User.find(created_by) || "Unknown"
-  end
-  
-  def render_report
-  	output = ""
-  	if report_field_groups.blank?
-  		output = "<em>No Report Items Exist</em>"
-  	else
-  		report_field_groups.find(:all, :order => 'render_order DESC').each do |g|
-  			output +=  g.render_group
-  		end
-  	end
-  	output
   end
 end

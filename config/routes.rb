@@ -9,8 +9,13 @@ ActionController::Routing::Routes.draw do |map|
   	report.resources :report_field_groups
   end
   
+  map.resources :report_field_groups do |report_field_group|
+  	report_field_group.resources :report_fields
+  end
+  
   map.resources :user_sessions
   map.resources :users
+  map.resources :report_submissions
 
   map.login "login", :controller => "user_sessions", :action => "new"
   map.logout "logout", :controller => "user_sessions", :action => "destroy"

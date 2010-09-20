@@ -32,7 +32,7 @@ class ReportsController < ApplicationController
     @report = Report.find(params[:id])
     if @report.update_attributes(params[:report])
       flash[:notice] = "Successfully updated report."
-      redirect_to @report
+      redirect_to organization_report_path(@organization, @report)
     else
       render :action => 'edit'
     end

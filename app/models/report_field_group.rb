@@ -1,7 +1,12 @@
 class ReportFieldGroup < ActiveRecord::Base
 	belongs_to :report
+	has_many :report_fields
 	
-	def render_group
+	attr_accessor :previous_order
+	
+	after_save :correct_order_structure
+	
+	def generate_style
 		style = ""
 		
 		style += "float: #{float}; " unless float.blank?
@@ -14,10 +19,18 @@ class ReportFieldGroup < ActiveRecord::Base
 			style += "left: #{pos_x}" unless pos_x.blank?
 		end
 		
-		output = "<fieldset style=\"#{style}\"><legend>#{title}</legend>"
+		return	style
+	end
+	
+	private
+	
+	def correct_order_structure
 		
-		output += "<em>No fields in group</em>"
-		
-		output += "</fieldset>"
+		# Update all field_groups before the new order position to be current_order+1
+		if render_order > @previous_order
+			self.connection.execute("UPDATE report_field_groups SET render_order=render_order-1 WHERE report_id=#{report_id} AND ((render_order < #{render_order} AND  render_order > #{@previous_order}) OR (render_order = #{render_order} AND id != #{id}))")
+		elsif render_order < @previous_order
+			self.connection.execute("UPDATE report_field_groups SET render_order=render_order+1 WHERE report_id=#{report_id} AND ((render_order > #{render_order} AND  render_order < #{@previous_order}) OR (render_order = #{render_order} AND id != #{id}))")
+		end		
 	end
 end

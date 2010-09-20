@@ -1,0 +1,27 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  label: MyString
+  size: 1
+  pos_x: MyString
+  pos_y: MyString
+  width: MyString
+  height: MyString
+  report_field_group_id: 1
+  report_field_type_id: 1
+  report_master_field_id: 1
+  formula: MyString
+  float: MyString
+
+two:
+  label: MyString
+  size: 1
+  pos_x: MyString
+  pos_y: MyString
+  width: MyString
+  height: MyString
+  report_field_group_id: 1
+  report_field_type_id: 1
+  report_master_field_id: 1
+  formula: MyString
+  float: MyString

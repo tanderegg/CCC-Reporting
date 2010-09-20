@@ -1,0 +1,5 @@
+<% title "Edit Report Group - #{@report_field_group.title}" %>
+<%= set_menu_item("reports_link") %>
+
+<%= render :partial => 'form', :object => @report_field_group  %>
+<%= link_to "Cancel", edit_organization_report_path(@report.organization, @report), :class => "command" %>

@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  report_id: 1
+  user_id: 1
+  submission_type_id: 1
+  submission_date: 2010-09-17
+  notes: MyText
+  approved: false
+
+two:
+  report_id: 1
+  user_id: 1
+  submission_type_id: 1
+  submission_date: 2010-09-17
+  notes: MyText
+  approved: false

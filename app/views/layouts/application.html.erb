@@ -2,7 +2,7 @@
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
 	<head>
-		<title><%= h("CCC Reports :: " + yield(:title) || "Untitled") %></title>
+		<title><%= "CCC Reports :: " + yield(:title) || "Untitled"%></title>
 		<%= stylesheet_link_tag 'main' %>
 		<%= javascript_include_tag :defaults %>
 		<%= yield(:head) %>
@@ -10,35 +10,44 @@
 	<body>
 		<div id="wrapper">
 			<div id="header">
-				<div id="info_box_header"><%= current_user ? current_user.username : (link_to "Login", login_path) %><span style="float: right;"><%= Date.today.to_s(:short) %></div>
-				<div id="page_title">
-					<%- if show_title? -%>
-						<h1><%=h yield(:title) %></h1>
-					<%- end %>
-				</div>
 				<div id="logo_header"><%= image_tag('logo_header.png') %></div>
+				<div id="page_header_wrapper">
+					<div id="info_box_header"><%= current_user ? current_user.username : (link_to "Login", login_path) %><span style="float: right;"><%= Date.today.to_s(:short) %></div>
+					<div id="page_title">
+						<%- if show_title? -%>
+							<h1><%= yield(:title) %></h1>
+						<%- end %>
+					</div>
+				</div>
 			</div>
 			<div id="container">
 				<div id="sidebar_wrapper">
 					<div id="sidebar">
 						<ul>
 							<% if current_user %>
-								<li id="submit_report_link"><%= link_to "SUBMIT REPORT", "" %></li>
-								<li id="report_history_link"><%= link_to "REPORT HISTORY", "" %></li>
+								<li id="submit_report_link"><%= link_to "SUBMIT REPORT", new_report_submission_path %></li>
+								<li id="report_history_link"><%= link_to "REPORT HISTORY", report_submissions_path %></li>
 								<li id="reports_link"><%= link_to "VIEW REPORTS", organization_reports_path(current_user.organization) %></li>
 								<li id="staffing_link"><%= link_to "STAFFING", users_url %></li>
 								<li id="organizations_link"><%= link_to "ORGANIZATIONS", organizations_path %></li>
 								<li id="account_link"><%= link_to "MY ACCOUNT", user_url(current_user) %></li>
-								<li><%= link_to "LOGOUT", logout_url %></li>
-							<% else %>
-								<li id="login_link"><%= link_to "LOGIN", login_url %></li>
 							<% end %>
-								<li id="help_link"><%= link_to "HELP", "" %></li>
-								<li id="about_link"><%= link_to "ABOUT", "" %></li>
 						</ul>
 					</div>
 					<div id="sidebar_footer">
-						<%=image_tag "sidebar_footer.png" %>
+						<%=image_tag "sidebar_footer_new.png" %>
+						<div id="sidebar_footer_content">
+							<ul>
+								<li id="about_link"><%= link_to "About", "" %></li>
+							<% if current_user %>
+								<li id="help_link"><%= link_to "Help", "" %></li>
+								<li><%= link_to "Logout", logout_url %></li>
+							<% else %>
+								<li id="login_link"><%= link_to "Login", login_url %></li>
+							<% end %>
+							</ul>
+						</div>
+						<%=image_tag "sidebar_footer_bottom.png" %>
 					</div>
 				</div>
 				
@@ -52,6 +61,8 @@
 				</div>
 				
 				<div id="footer">
+					Developed by Tim Anderegg
+					<br />For the Center for Community Change (www.communitychange.org)
 				</div>
 			</div>
 		</div>

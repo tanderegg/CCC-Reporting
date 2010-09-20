@@ -1,0 +1,43 @@
+<% form_for [@report, @report_field_group] do |f| %>
+	<p>
+		<%= f.label :title %><br />
+		<%= f.text_field :title %>
+	</p>
+	
+	<div style="width: 100%; overflow: auto;">
+		<p style="float: left; margin-right: 1em;">
+			<%= f.label :render_order, "Order" %><br />
+			<%= f.text_field :render_order, :size => 3 %>
+		</p>
+		<p style="float: left; margin-right: 1em;">
+			<%= f.label :float %><br />
+			<%= f.select :float, [["None","none"],["Left","left"],["Right","right"]] %>
+		</p>
+	</div>
+	
+	<div style="width: 100%; overflow: auto;">
+		<p style="float: left; margin-right: 1em;">
+			<%= f.label :pos_x %><br />
+			<%= f.text_field :pos_x, :size => 3 %>
+		</p>
+		<p style="float: left; margin-right: 1em;">
+			<%= f.label :pos_y %><br />
+			<%= f.text_field :pos_y, :size => 3 %>
+		</p>
+		<p style="float: left; margin-right: 1em;">
+			<%= f.label :width %><br />
+			<%= f.text_field :width, :size => 3 %>
+		</p>
+		<p style="float: left;">
+			<%= f.label :height %><br />
+			<%= f.text_field :height, :size => 3 %>
+		</p>
+	</div>
+	
+	
+	<%= f.hidden_field :report_id, :value => @report.id %>
+	
+	<p>
+		<%= f.submit "Save" %>
+	</p>
+<% end %>

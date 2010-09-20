@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  report_submission_id: 1
+  report_field_id: 1
+  value: MyString
+  text_value: MyText
+
+two:
+  report_submission_id: 1
+  report_field_id: 1
+  value: MyString
+  text_value: MyText

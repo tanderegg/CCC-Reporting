@@ -1,0 +1,18 @@
+<fieldset style="<%= report_field_group.generate_style %>"<legend><%= report_field_group.title %></legend>
+	<% if report_field_group.report_fields.empty? %>
+		<em>No fields in group</em>
+	<% else %>
+		<div style="width: 100%; overflow: auto;">
+			<% report_field_group.report_fields.find(:all, :order => 'render_order ASC').each do |report_field| %>
+				<%= render :partial => 'report_fields/report_field', :object => report_field, :locals => {:edit => edit} %>
+			<% end %>
+		</div>
+	<% end %>
+	<% if edit==true %>
+		<br />
+		<%= label_tag 'Order' %>: <%= report_field_group.render_order %> | 
+		<%= link_to 'Edit', edit_report_report_field_group_path(report_field_group.report, report_field_group) %> 
+		<%= link_to 'Delete', report_report_field_group_path(report_field_group.report, report_field_group), :method => :delete, :confirm => "Are you sure?" %>
+		<%= link_to 'New Field', new_report_field_group_report_field_path(report_field_group) %>
+	<% end %>
+</fieldset>

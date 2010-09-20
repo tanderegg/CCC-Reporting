@@ -17,7 +17,7 @@
   <div style="width: 100%; overflow: auto;">
 	  <p style="float: left; margin-right: 1em;">
 	    <%= f.label :description %><br />
-	    <%= f.text_area :description, :rows => 5, :style => "display: block;" %>
+	    <%= f.text_area :description, :rows => 2, :cols => 70, :style => "display: block;" %>
 	  </p>
 	  <p style="float: left;">
 	    <%= f.label :active %><br />
@@ -30,12 +30,12 @@
   </p>
 
   <h3>Report Preview</h3>  
-  <p style="width: 100%; overflow: auto;">
-  	<%= link_to "New Group", new_report_report_field_group_path(@report), :class => "command" %>
-  </p>
   <div id="report_preview">
-  	<%= @report.render_report %>
+  	<%= render :partial => 'report', :object => @report, :locals => {:edit => true} %>
+  	<p style="width: 100%; overflow: auto;">
+  		<%= link_to "New Group", new_report_report_field_group_path(@report) %>
+  	</p>
   </div>
   
-  <p><%= f.submit 'Save Report' %></p>
+  <p><%= f.submit 'Save Report', :class => "command" %></p>
 <% end %>

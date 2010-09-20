@@ -1,0 +1,7 @@
+<% if report.report_field_groups.blank? %>
+  		<em>No Report Items Exist</em>
+<% else %>
+  	<% report.report_field_groups.find(:all, :order => 'render_order ASC').each do |g| %>
+  			<%= render :partial => "report_field_groups/report_field_group", :object => g, :locals => {:edit => edit} %>
+  	<% end %>
+<% end %>

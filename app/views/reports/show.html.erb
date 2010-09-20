@@ -1,9 +1,7 @@
-<% title "REPORT - #{@report.name}" %>
+<% title "#{h(@report.name)} - <small>#{(h @report.start_date.to_s(:short))} to #{(h @report.end_date.to_s(:short))}</small>" %>
 <%= set_menu_item("reports_link") %>
 
-<h1><%=h @report.name %><small> - <%=h @report.start_date.to_s(:short) %> to <%=h @report.end_date.to_s(:short) %></small></h1>
-
-<p style="margin-bottom: 0;">
+<p style="margin: 0;">
   <strong>Description:</strong>
   <%=h @report.description %>
 </p>
@@ -24,7 +22,7 @@
 
 <h3>Report Preview</h3>  
 <div id="report_preview">
-	<%= @report.render_report %>
+	<%= render :partial => 'report', :object => @report, :locals => {:edit => false} %>
 </div>
 
 <p>

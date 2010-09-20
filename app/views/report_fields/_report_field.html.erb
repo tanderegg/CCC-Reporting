@@ -1,0 +1,13 @@
+<% field_name = "report_submission[#{report_field.label}_#{report_field.id.to_s}]" %>
+
+<div style="<%= report_field.generate_style %>; margin-bottom: 1em;">
+	<% if report_field.report_field_type == "Text Field" %>
+		<%= label_tag "#{report_field.label}", nil, :style => "width: 6em; display: block; float: left;" %> 
+		<%= edit ? ("(" + (link_to "E", edit_report_field_group_report_field_path(report_field.report_field_group, report_field))) + ")" : '' %> 
+		<%= text_field_tag field_name, nil, :size => report_field.size %>
+	<% elsif report_field.report_field_type == "Text Area" %>
+		<%= label_tag "#{report_field.label}", nil, :style => "width: 6em; display: block; float: left;" %> 
+		<%= edit ? ("(" + (link_to "E", edit_report_field_group_report_field_path(report_field.report_field_group, report_field))) + ")" : '' %><br />
+		<%= text_area_tag field_name, nil, :cols => report_field.size, :rows => 6  %>
+	<% end %>
+</div>
