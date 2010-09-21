@@ -26,6 +26,8 @@ class ReportFieldGroup < ActiveRecord::Base
 	
 	def correct_order_structure
 		
+		@previous_order = 10000 unless @previous_order
+		
 		# Update all field_groups before the new order position to be current_order+1
 		if render_order > @previous_order
 			self.connection.execute("UPDATE report_field_groups SET render_order=render_order-1 WHERE report_id=#{report_id} AND ((render_order < #{render_order} AND  render_order > #{@previous_order}) OR (render_order = #{render_order} AND id != #{id}))")
