@@ -8,6 +8,7 @@ class ReportFieldGroupsController < ApplicationController
 	
 	def create
 		@report_field_group = ReportFieldGroup.new(params[:report_field_group])
+		@previous_order = 10000
 		
 		if @report_field_group.save
 			flash[:notice] = "Report group successfully created."
