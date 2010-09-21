@@ -10,6 +10,7 @@
 <hr />	
 <% if @report %>
 	<h2><%= @report.name %> - <%= @current_date.to_s(:long) %></h2>
+	<p style="color: #F00;">This report was submitted at <%= @report_submission.created_at.to_s %></p>
 	<% @report.report_field_groups.find(:all, :order => :render_order).each do |report_field_group| %>
 		<fieldset style="<%= report_field_group.generate_style %>"<legend><%= report_field_group.title %></legend>
 			<div style="width: 100%; overflow: auto;">
@@ -18,7 +19,7 @@
 						
 						<div style="<%= report_field.generate_style %>; margin-bottom: 1em;">
 							<% field_value = @report_submission.report_submission_datas.find(:first, :conditions => {:report_field_id => report_field.id}) %>
-							<% if report_field.report_field_type == "Text Field" %>
+							<% if (report_field.report_field_type == "Number" ||  report_field.report_field_type =="Text Field") %>
 								<%= label_tag "#{report_field.label}", nil, :style => "width: 6em; display: block; float: left;" %> 
 								<%= field_value.blank? ? "&nbsp;" : field_value.value  %>
 							<% elsif report_field.report_field_type == "Text Area" %>

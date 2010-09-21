@@ -1,31 +1,17 @@
 <% title "Report History" %>
 <%= set_menu_item("report_history_link") %>
 
-<h3>User: <%= current_user.username %></h3>
-<p>
-<%= (select_tag 'selected_report', options_from_collection_for_select(@organizations_reports, "id", "name")) unless @organizations_reports.blank? %>
-</p>
-
-<table style="font-size: 8pt; font-family: Arial;">
-	<tr>
-		<th style="width: 15em;">Fields</th>
-		<% @report_submissions.each do |submission| %>
-			<th style="width: 7em;"><%= submission.submission_date %></th>
-		<% end %>
-		<th>&nbsp;</th>
-	</tr>
-<% @report.report_field_groups.each do |report_field_group| %>
-	<% report_field_group.report_fields.each do |report_field| %>
-	<tr>
-		<th style="width: 15em; text-align: left;">	<%= report_field_group.title %> - <%= report_field.label %></th>
-		<% @report_submissions.each do |submission| %>
-			<% submission_data = submission.report_submission_datas.find(:first, :conditions => {:report_field_id => report_field.id}) %>
-			<% if submission_data %>
-			<td style="width: 7em; text-align: center;"><%= submission_data ? submission_data.value : '' %></td>
-			<% end %>
-		<% end %>
-		<td>&nbsp;</td>
-	</tr>
+<div style="width: 100%; overflow: auto;">
+	<% if current_user.organization.all_children %>
+		<div style="float: left; margin-right: 2em;"><strong>Organization: </strong><%= (select_tag 'selected_organization', options_from_collection_for_select(@organizations, "id", "name", @current_organization.id))  %></div>
 	<% end %>
-<% end %>
-</table>
+	<div style="float: left; margin-right: 2em;"><strong>Report: </strong><%= select_tag 'selected_report', (@current_organization.reports ? options_from_collection_for_select(@current_organization.reports, "id", "name", @report.id): []) %></div>
+	<div style="float: left; margin-right: 2em;"><strong>User: </strong><%= current_user.username %></div>
+</div>
+
+
+<div id="report_history_table">
+	<%= render :partial => 'report_submissions' %>
+</div>
+<%= observe_field(:selected_organization, :on => :selected, :update => :selected_report, :with => 'organization_id', :frequency => 0.5, :url => {:action => :getReports}) %>
+<%= observe_field(:selected_report, :on => :selected, :update => :report_history_table, :with => 'report_id', :frequency => 0.5, :url => {:action => :getReportHistory}) %>

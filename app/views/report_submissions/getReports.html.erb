@@ -1,0 +1,5 @@
+<% unless @reports.empty? %>
+	<%= options_from_collection_for_select(@reports, "id", "name") %>
+<% else %>
+	<option value=''><em>No Reports Available</em></option>
+<% end %>

@@ -14,7 +14,7 @@ class UserSessionsController < ApplicationController
     @user_session = UserSession.new(params[:user_session])
     if @user_session.save
       flash[:notice] = "Welcome, <strong>#{current_user.username}</strong> to CCC Reports!"
-      redirect_to :controller => :users, :action => :index
+      redirect_to new_report_submission_path
     else
       render :action => 'new'
     end

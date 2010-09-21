@@ -7,7 +7,7 @@ class ReportField < ActiveRecord::Base
 	
 	attr_accessor :previous_order
 	
-	REPORT_TYPE = [["Text Field", 0], ["Text Area", 1], ["Select Box", 2], ["Range", 3]]
+	REPORT_TYPE = [["Number", 0], ["Text Area", 1], ["Text Field", 2], ["Select Box", 3], ["Range", 4]]
 	
 	after_save :correct_order_structure
 	

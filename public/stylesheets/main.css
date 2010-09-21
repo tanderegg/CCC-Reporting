@@ -40,8 +40,11 @@ legend {
 table tr th {
 	background: #2B5588;
 	color: #FFF;
-	border: 1px solid #6E9FDA;
 	padding: 0.25em;
+}
+
+.even {
+	background: #FEF3E5;
 }
 
 #wrapper {
@@ -244,6 +247,10 @@ input.command {
 	padding: 5px;
 	background: #F6F6F6;
 	overflow: auto;	
+}
+
+#report_history_table {
+	margin: 1em 0em;
 }
 
 #flash_notice {

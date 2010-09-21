@@ -1,0 +1,29 @@
+<% if @report_submissions %>
+
+	<table style="font-size: 8pt; font-family: Arial;">
+		<tr>
+			<th style="width: 15em;">Fields</th>
+			<% @report_submissions.each do |submission| %>
+				<th style="width: 7em;"><%= submission.submission_date %></th>
+			<% end %>
+			<th>&nbsp;</th>
+		</tr>
+	<% @report.report_field_groups.each do |report_field_group| %>
+		<% report_field_group.report_fields.each do |report_field| %>
+		<tr class="<%= cycle('odd','even') %>" >
+			<td style="width: 15em; text-align: left; color: #0061D7; font-weight: bold;">	<%= report_field_group.title %> - <%= report_field.label %></th>
+			<% @report_submissions.each do |submission| %>
+				<% submission_data = submission.report_submission_datas.find(:first, :conditions => {:report_field_id => report_field.id}) %>
+				<% if submission_data %>
+				<td style="width: 7em; text-align: center;"><%= submission_data ? submission_data.value : '' %></td>
+				<% end %>
+			<% end %>
+			<td>&nbsp;</td>
+		</tr>
+		<% end %>
+	<% end %>
+	</table>
+	
+<% else %>
+	<p><em>No reports submitted for the selected report</em></p>
+<% end %>
